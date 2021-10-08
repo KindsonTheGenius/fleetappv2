@@ -6,69 +6,62 @@
 <body>
 
 <div layout:fragment="content">
+
     <div class="container" style="width: 70%">
-    <div class="row justify-content-center" >
+    <div class="row">
+        <form class="form-horizontal" th:action="@{/states}" method="post">
         <div class="col-lg-12">
-            <form class="form-horizontal" th:action="@{/countries}" method="post">
             <section class="panel">
                 <header class="panel-heading">
-                   Add New Country Record
+                    Add New Country Record
                 </header>
                 <div class="panel-body">
-                        <!--date picker start-->
                         <div class="form-group">
-                            <label class="control-label col-sm-4">Description</label>
+                            <label class="control-label col-sm-4">Name</label>
                             <div class="col-sm-6">
-                                <input name="description" type="text" size="16" class="form-control">
+                                <input name="name" type="text"class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-4">Capital</label>
                             <div class="col-sm-6">
-                                 <input name="capital" class="form-control" size="16" type="text">
+                                <input name="capital" class="form-control" size="16" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-4"> Nationality</label>
+                            <label class="control-label col-sm-4"> Code</label>
                             <div class="col-sm-6">
-                                <input name="nationality" type="text" class=" form-control" />
+                                <input name="code" type="text" class=" form-control" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-4">Continent</label>
+                            <label class="control-label col-sm-4">Details</label>
 
                             <div class="col-sm-5">
-                                <input name="continent" type="text" class="form-control">
+                                <input name="details" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-4">Code</label>
-
+                            <label class="control-label col-sm-4">Country</label>
                             <div class="col-sm-5">
-                                <input name="code" type="text"  class="form-control">
+                                <input name="code" type="text" class="form-control">
                             </div>
                         </div>
-
-                        <!--color picker end-->
-
                 </div>
             </section>
 
             <section class="panel">
-
                 <div class="panel-body">
-                    <button type="submit" class="btn btn-primary">
-                        Save
-                    </button>
-                    <a href="/countries" class="btn  btn-warning">
-                        Exit
-                    </a>
+                    <button type="submit"  class="btn btn-success">Save</button>
+                    <a href="/states" class="btn btn-warning">Exit</a>
                 </div>
             </section>
-            </form>
+
         </div>
+
+        </form>
     </div>
-    </div>
+    <div>
 </div>
 
 </body>
