@@ -1,55 +1,45 @@
-package com.kindsonthegenius.fleetms.controllers;
+package com.kindsonthegenius.fleetapp_v2.hr.controllers;
 
-import java.util.Optional;
-
+import com.kindsonthegenius.fleetapp_v2.hr.models.JobTitle;
+import com.kindsonthegenius.fleetapp_v2.hr.repositories.JobTitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import com.kindsonthegenius.fleetms.models.JobTitle;
-import com.kindsonthegenius.fleetms.services.JobTitleService;
+import java.util.List;
 
 @Controller
-public class JobTitleController {
-	
-	@Autowired private JobTitleService jobTitleService;
-	
-	//Get All JobTitles
-	@GetMapping("jobTitles")
-	public String findAll(Model model){		
-		model.addAttribute("jobTitles", jobTitleService.findAll());
-		return "jobTitle";
-	}	
-	
-	@RequestMapping("jobTitles/findById") 
-	@ResponseBody
-	public Optional<JobTitle> findById(Integer id)
-	{
-		return jobTitleService.findById(id);
-	}
-	
-	//Add JobTitle
-	@PostMapping(value="jobTitles/addNew")
-	public String addNew(JobTitle jobTitle) {
-		jobTitleService.save(jobTitle);
-		return "redirect:/jobTitles";
-	}	
-	
-	@RequestMapping(value="jobTitles/update", method = {RequestMethod.PUT, RequestMethod.GET})
-	public String update(JobTitle jobTitle) {
-		jobTitleService.save(jobTitle);
-		return "redirect:/jobTitles";
-	}
-	
-	@RequestMapping(value="jobTitles/delete", method = {RequestMethod.DELETE, RequestMethod.GET})	
-	public String delete(Integer id) {
-		jobTitleService.delete(id);
-		return "redirect:/jobTitles";
-	}
+public class parametersController {
+    @Autowired
+    private JobTitleRepository jobTitleRepository;
+
+    @GetMapping("/hr/parameters")
+    public String parameters(Model model){
+        List<JobTitle> jobTitles = jobTitleRepository.findAll();
+        model.addAttribute("jobTitles", jobTitles);
+        return "hr/parameters";
+    }
+
+    //Get Job Title by id
+    @GetMapping("/hr/parameters/jobTitle/{id}")
+    @ResponseBody
+    public JobTitle getById(@PathVariable Integer id){
+        return jobTitleRepository.findById(id).orElse(null);
+    }
+
+    @PostMapping("/hr/parameters/jobTitles")
+    public String save(JobTitle jobTitle){
+        jobTitleRepository.save(jobTitle);
+        return "redirect:/hr/parameters";
+    }
+
+    @RequestMapping(value="/hr/parameters/jobTitle/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
+    public String delete(@PathVariable Integer id) {
+        jobTitleRepository.deleteById(id);
+        return "redirect:/hr/parameters";
+    }
+
+
 
 }
