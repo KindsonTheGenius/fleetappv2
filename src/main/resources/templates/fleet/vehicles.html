@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+<body>
+
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                    <li><i class="fa fa-bars"></i>Pages</li>
+                    <li><i class="fa fa-square-o"></i>Pages</li>
+                </ol>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel" style="margin-bottom: 0px;">
+
+                <div class="panel-body">
+                    <a th:href="@{/fleet/vehicleAdd}" class="btn btn-primary">
+                        Add New Country
+                    </a>
+                </div>
+            </section>
+            <section class="panel">
+                <header class="panel-heading">
+                    Vehicle
+                </header>
+
+                <table class="table table-striped table-advance table-hover">
+                    <tbody>
+                    <tr>
+                        <th></th>
+                        <th><i class="icon_profile"></i> Id</th>
+                        <th><i class="icon_profile"></i> Name</th>
+                        <th><i class="icon_calendar"></i>Description</th>
+                        <th><i class="icon_mail_alt"></i> Acquisition Date</th>
+                        <th><i class="icon_cogs"></i> Action</th>
+                    </tr>
+                    <tr th:each="vehicle:${vehicles}">
+                        <td th:text="${vehicle.id}">Id</td>
+                        <td th:text="${vehicle.name}">Name</td>
+                        <td th:text="${vehicle.description}">Description</td>
+                        <td th:text="${vehicle.acquisitionDate}">Acquisition Date</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" id="editButton" th:href="@{/vehicles/findById/(id=${vehicle.id})}"><i class="icon_pencil-edit"></i></a>
+                                <a class="btn btn-success" id="detailsButton" th:href="@{/vehicles/findById/(id=${vehicle.id})}"><i class="icon_document_alt"></i></a>
+                                <a class="btn btn-danger" id="deleteButton" th:href="@{/vehicles/delete/(id=${vehicle.id})}"><i class="icon_close_alt2"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </section>
+        </div>
+    </div>
+    <!--Content of the page-->
+    </section>
+</div>
+
+
+</body>
+</html>
