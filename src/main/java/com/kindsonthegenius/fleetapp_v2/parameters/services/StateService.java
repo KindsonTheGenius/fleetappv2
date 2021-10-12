@@ -1,13 +1,12 @@
-package com.kindsonthegenius.fleetms.services;
+package com.kindsonthegenius.fleetapp_v2.parameters.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kindsonthegenius.fleetapp_v2.parameters.models.State;
+import com.kindsonthegenius.fleetapp_v2.parameters.repositories.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kindsonthegenius.fleetms.models.State;
-import com.kindsonthegenius.fleetms.repositories.StateRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StateService {
@@ -21,8 +20,8 @@ public class StateService {
 	}	
 	
 	//Get State By Id
-	public Optional<State> findById(int id) {
-		return stateRepository.findById(id);
+	public State findById(int id) {
+		return stateRepository.findById(id).orElse(null);
 	}	
 	
 	//Delete State

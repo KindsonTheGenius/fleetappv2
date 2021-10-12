@@ -1,13 +1,12 @@
-package com.kindsonthegenius.fleetms.services;
+package com.kindsonthegenius.fleetapp_v2.parameters.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kindsonthegenius.fleetapp_v2.parameters.models.Supplier;
+import com.kindsonthegenius.fleetapp_v2.parameters.repositories.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kindsonthegenius.fleetms.models.Supplier;
-import com.kindsonthegenius.fleetms.repositories.SupplierRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SupplierService {

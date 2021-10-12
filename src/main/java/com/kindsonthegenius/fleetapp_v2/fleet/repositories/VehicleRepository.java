@@ -1,11 +1,10 @@
-package com.kindsonthegenius.fleetms.repositories;
+package com.kindsonthegenius.fleetapp_v2.fleet.repositories;
 
+import com.kindsonthegenius.fleetapp_v2.fleet.models.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.kindsonthegenius.fleetms.models.Vehicle;
-
 @Repository
-public interface VehicleRepository extends JpaRepository<Vehicle, Integer>{
+public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
 }

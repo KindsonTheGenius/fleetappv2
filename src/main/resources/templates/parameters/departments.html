@@ -6,16 +6,16 @@
 
 <div layout:fragment="content">
     <section class="wrapper">
-    <div class="row">
-        <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
-            <ol class="breadcrumb">
-                <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-                <li><i class="fa fa-bars"></i>Pages</li>
-                <li><i class="fa fa-square-o"></i>Pages</li>
-            </ol>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header"><i class="fa fa fa-bars"></i> Parameters</h3>
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
+                    <li><i class="fa fa-bars"></i><a href="/parameters">Parameters</a></li>
+                    <li><i class="fa fa-square-o"></i>Parameters</li>
+                </ol>
+            </div>
         </div>
-    </div>
     <div class="row">
         <div class="col-lg-12">
             <section class="panel" style="margin-bottom: 0px;">
@@ -49,10 +49,10 @@
                         <td th:text="${country.continent}"></td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-primary" th:href="@{'/countryDetails/'+${country.id}}"><i class="icon_plus_alt2"></i></a>
+                                <a class="btn btn-primary" th:href="@{'/countryDetails/'+${country.id}}"><i class="icon_document_alt"></i></a>
                                 <a class="btn btn-success"
                                    th:href="@{'/countryEdit/'+${country.id}}">
-                                    <i class="icon_check_alt2"></i></a>
+                                    <i class="icon_pencil-edit"></i></a>
                                 <a class="btn btn-danger"
                                    onclick="return confirm('Are you sure?')"
                                    th:href="@{'/countries/delete/'+${country.id}}">

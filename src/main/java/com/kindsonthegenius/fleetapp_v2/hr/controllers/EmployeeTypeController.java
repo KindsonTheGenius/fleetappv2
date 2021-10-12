@@ -1,55 +1,51 @@
-package com.kindsonthegenius.fleetms.controllers;
+package com.kindsonthegenius.fleetapp_v2.hr.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
+import com.kindsonthegenius.fleetapp_v2.hr.models.EmployeeType;
+import com.kindsonthegenius.fleetapp_v2.hr.models.EmployeeType;
+import com.kindsonthegenius.fleetapp_v2.hr.repositories.EmployeeTypeRepository;
+import com.kindsonthegenius.fleetapp_v2.hr.services.EmployeeTypeService;
+import com.kindsonthegenius.fleetapp_v2.hr.services.EmployeeTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.kindsonthegenius.fleetms.models.EmployeeType;
-import com.kindsonthegenius.fleetms.services.EmployeeTypeService;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class EmployeeTypeController {
-	
-	@Autowired private EmployeeTypeService employeeTypeService;
-	
-	//Get All EmployeeTypes
-	@GetMapping("employeeTypes")
-	public String findAll(Model model){		
-		model.addAttribute("employeeTypes", employeeTypeService.findAll());
-		return "employeeType";
-	}	
-	
-	@RequestMapping("employeeTypes/findById") 
+
+	@Autowired
+	private EmployeeTypeRepository employeeTypeRepository;
+
+	@Autowired
+	private EmployeeTypeService employeeTypeService;
+
+	@GetMapping("/hr/employeeTypes")
+	public String parameters(Model model){
+		List<EmployeeType> employeeTypes = employeeTypeRepository.findAll();
+		model.addAttribute("employeeTypes", employeeTypes);
+		return "hr/employeeTypes";
+	}
+
+	//Get Job Title by id
+	@GetMapping("/hr/employeeType/{id}")
 	@ResponseBody
-	public Optional<EmployeeType> findById(Integer id)
-	{
-		return employeeTypeService.findById(id);
+	public EmployeeType getById(@PathVariable Integer id){
+		return employeeTypeService.findById(id).orElse(null);
 	}
-	
-	//Add EmployeeType
-	@PostMapping(value="employeeTypes/addNew")
-	public String addNew(EmployeeType employeeType) {
+
+	@PostMapping("/hr/employeeTypes")
+	public String save(EmployeeType employeeType){
 		employeeTypeService.save(employeeType);
-		return "redirect:/employeeTypes";
-	}	
-	
-	@RequestMapping(value="employeeTypes/update", method = {RequestMethod.PUT, RequestMethod.GET})
-	public String update(EmployeeType employeeType) {
-		employeeTypeService.save(employeeType);
-		return "redirect:/employeeTypes";
+		return "redirect:/hr/employeeTypes";
 	}
-	
-	@RequestMapping(value="employeeTypes/delete", method = {RequestMethod.DELETE, RequestMethod.GET})	
-	public String delete(Integer id) {
+
+	@RequestMapping(value="/hr/employeeType/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
+	public String delete(@PathVariable Integer id) {
 		employeeTypeService.delete(id);
-		return "redirect:/employeeTypes";
+		return "redirect:/hr/employeeTypes";
 	}
 
 }

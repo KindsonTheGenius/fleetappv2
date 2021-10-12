@@ -2,19 +2,17 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
-
 <body>
 
 <div layout:fragment="content">
     <section class="wrapper">
-
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa fa-bars"></i> Employee Typea</h3>
+            <h3 class="page-header"><i class="fa fa fa-bars"></i> Vehicle Models</h3>
             <ol class="breadcrumb">
                 <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
-                <li><i class="fa fa-bars"></i><a href="/fleet">HR</a></li>
-                <li><i class="fa fa-square-o"></i>Job Titles</li>
+                <li><i class="fa fa-bars"></i><a href="/fleet">Fleet Home</a></li>
+                <li><i class="fa fa-square-o"></i>Vehicle Models</li>
             </ol>
         </div>
     </div>
@@ -52,8 +50,8 @@
                     <td>
                         <div class="btn-group">
                             <a id="display"  th:href="@{'/fleet/vehicleModel/'+${vehicleModel.id}}"
-                               class="btn btn-primary"><i class="icon_plus_alt2"></i></a>
-                            <a class="btn btn-success"><i class="icon_check_alt2"></i></a>
+                               class="btn btn-primary"><i class="icon_pencil-edit"></i></a>
+                            <a class="btn btn-success"><i class="icon_document_alt"></i></a>
                             <a class="btn btn-danger" onclick="return confirm('Are you sure you want delete?')"
                                th:href="@{'/fleet/vehicleModel/delete/'+${vehicleModel.id}}">
                                 <i class="icon_close_alt2"></i></a>

@@ -2,73 +2,110 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
-
 <body>
 
 <div layout:fragment="content">
-    <div class="container" style="width: 70%">
-        <div class="row justify-content-center" >
+    <section class="wrapper">
+        <div class="row">
             <div class="col-lg-12">
-                <form class="form-horizontal" th:action="@{'/parameters/countries/update/'+${country.id}}" method="put">
+                <h3 class="page-header"><i class="fa fa fa-bars"></i> Vehicle Maintenance Details</h3>
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="/fleet">Home</a></li>
+                    <li><i class="fa fa-bars"></i><a href="/fleet/vehicles">Vehicle Maintenance List</a></li>
+                    <li><i class="fa fa-square-o"></i>Vehicle Maintenance Details</li>
+                </ol>
+            </div>
+        </div>
+        <div class="container" style="width: 70%">
+            <form class="form-horizontal" method="post">
+                <div class="row justify-content-center white-bg" >
                     <section class="panel">
                         <header class="panel-heading">
-                            Editing Country Record
+                            Details Maintenance Record
                         </header>
-                        <div class="panel-body">
-                            <!--date picker start-->
-                            <div class="form-group">
-                                <label class="control-label col-sm-4">Description</label>
-                                <div class="col-sm-6">
-                                    <input name="description" th:value="${country.description}" type="text" size="16" class="form-control">
+                        <br>
+                        <div class="col-lg-6">
+                            <section class="panel">
+                                <div class="form-group row">
+                                    <label for="idAdd" class="col-sm-4 col-form-label">Id:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" th:value="${maintenance.id}" class="form-control" id="idAdd" name="id" readonly>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-4">Capital</label>
-                                <div class="col-sm-6">
-                                    <input name="capital" th:value="${country.capital}" class="form-control" size="16" type="text">
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-4">Vehicle: </label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="vehicleid" readonly="">
+                                            <option th:value="${null}">-SELECT-</option>
+                                            <option th:each="vehicle : ${vehicles}"
+                                                    th:selected="${vehicle.id} == ${maintenance.vehicleid}?True:False"
+                                                    th:value="${vehicle.id}"
+                                                    th:text="${vehicle.name}">
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-4"> Nationality</label>
-                                <div class="col-sm-6">
-                                    <input name="nationality" th:value="${country.nationality}"  type="text" class=" form-control" />
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-4">Start Date:</label>
+                                    <div class="col-sm-6">
+                                        <input type="date" th:field="${maintenance.startDate}" class="form-control" name="startDate">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-4">Continent</label>
-
-                                <div class="col-sm-5">
-                                    <input name="continent" th:value="${country.continent}"  type="text" class="form-control">
+                                <div class="form-group row">
+                                    <label  class="col-form-label col-sm-4">End Date:</label>
+                                    <div class="col-sm-6">
+                                        <input type="date" th:field="${maintenance.endDate}" class="form-control" name="endDate">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-4">Code</label>
-
-                                <div class="col-sm-5">
-                                    <input name="code" th:value="${country.code}"  type="text" class="form-control">
+                            </section>
+                        </div>
+                        <div class="col-lg-6">
+                            <section class="panel">
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-4">Supplier: </label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlSupplierAdd" name="supplierid">
+                                            <option th:value="${null}">-SELECT-</option>
+                                            <option th:each="supplier : ${suppliers}"
+                                                    th:selected="${supplier.id} == ${maintenance.supplierid}?True:False"
+                                                    th:value="${supplier.id}"
+                                                    th:text="${supplier.name}">
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <!--color picker end-->
-
+                                <div class="form-group row">
+                                    <label for="remarksAdd" class="col-form-label col-sm-4">Remarks:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" th:value="${maintenance.remarks}" class="form-control" id="remarksAdd" name="remarks">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-4">Price:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" th:value="${maintenance.price}" class="form-control" name="price">
+                                    </div>
+                                </div>
+                            </section>
                         </div>
                     </section>
-
+                </div>
+                <br>
+                <div class="row">
                     <section class="panel">
-
                         <div class="panel-body">
-                            <button type="submit" class="btn btn-primary">
-                                Save
-                            </button>
-                            <a href="/countries" class="btn  btn-warning">
+                            <a th:href="@{'/fleet/maintenance/Edit/'+${maintenance.id}}" type="submit" class="btn btn-primary">
+                                Edit this record
+                            </a>
+                            <a href="/fleet/maintenances" class="btn  btn-warning">
                                 Exit
                             </a>
                         </div>
                     </section>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
-    </div>
+    </section>
 </div>
 
 </body>

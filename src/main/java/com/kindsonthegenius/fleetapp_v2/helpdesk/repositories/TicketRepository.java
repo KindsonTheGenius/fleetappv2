@@ -1,10 +1,10 @@
-package com.kindsonthegenius.fleetapp_v2.accounts.repositories;
+package com.kindsonthegenius.fleetapp_v2.helpdesk.repositories;
 
-import com.kindsonthegenius.fleetapp_v2.accounts.models.Invoice;
+import com.kindsonthegenius.fleetapp_v2.helpdesk.models.Ticket;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
+public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
 }

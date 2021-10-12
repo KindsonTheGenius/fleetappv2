@@ -1,6 +1,7 @@
-package com.kindsonthegenius.fleetms;
+package com.kindsonthegenius.fleetapp_v2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -13,9 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -43,18 +41,14 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 		.logout().invalidateHttpSession(true)
 		.clearAuthentication(true)
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/login").permitAll()
-		.and()
-		.oauth2Login()
-				.loginPage("/login")
-				.defaultSuccessUrl("/index").permitAll();
+		.logoutSuccessUrl("/login").permitAll();
 	}
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
-	}	
-	
+	}
+
 	@Autowired
 	private UserDetailsService userDetailsService;
 	

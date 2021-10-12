@@ -1,13 +1,12 @@
-package com.kindsonthegenius.fleetms.services;
+package com.kindsonthegenius.fleetapp_v2.parameters.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kindsonthegenius.fleetapp_v2.parameters.models.Contact;
+import com.kindsonthegenius.fleetapp_v2.parameters.repositories.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kindsonthegenius.fleetms.models.Contact;
-import com.kindsonthegenius.fleetms.repositories.ContactRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContactService {

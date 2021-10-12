@@ -1,15 +1,14 @@
-package com.kindsonthegenius.fleetms.services;
+package com.kindsonthegenius.fleetapp_v2.hr.services;
 
-import java.util.List;
-import java.util.Optional;
-
-import com.kindsonthegenius.fleetms.models.User;
-import com.kindsonthegenius.fleetms.repositories.UserRepository;
+import com.kindsonthegenius.fleetapp_v2.hr.models.Employee;
+import com.kindsonthegenius.fleetapp_v2.hr.repositories.EmployeeRepository;
+import com.kindsonthegenius.fleetapp_v2.security.models.User;
+import com.kindsonthegenius.fleetapp_v2.security.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kindsonthegenius.fleetms.models.Employee;
-import com.kindsonthegenius.fleetms.repositories.EmployeeRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -26,8 +25,8 @@ public class EmployeeService {
 	}	
 	
 	//Get Employee By Id
-	public Optional<Employee> findById(int id) {
-		return employeeRepository.findById(id);
+	public Employee findById(int id) {
+		return employeeRepository.findById(id).orElse(null);
 	}	
 	
 	//Delete Employee

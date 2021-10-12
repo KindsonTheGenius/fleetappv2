@@ -1,5 +1,8 @@
-package com.kindsonthegenius.fleetapp.controllers;
+package com.kindsonthegenius.fleetapp_v2.security.controllers;
 
+
+import com.kindsonthegenius.fleetapp_v2.security.models.User;
+import com.kindsonthegenius.fleetapp_v2.security.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,17 +10,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.kindsonthegenius.fleetapp.models.User;
-import com.kindsonthegenius.fleetapp.services.UserService;
-
 @Controller
 public class UserController {
 
-	@Autowired private UserService userService;
+	@Autowired
+    private UserService userService;
 	
-	@GetMapping("/users")
-	public String getCountries() {
-		return "User";
+	@GetMapping("/security/users")
+	public String getUser() {
+		return "/security/users";
 	}
 	
 	
@@ -27,7 +28,7 @@ public class UserController {
 		
 		userService.save(user);	
 		
-		RedirectView  redirectView= new RedirectView("/login",true);
+		RedirectView redirectView= new RedirectView("/login",true);
 		
 	    redir.addFlashAttribute("message",	"You successfully registered! You can now login");
 	        

@@ -1,9 +1,8 @@
-package com.kindsonthegenius.fleetms.repositories;
+package com.kindsonthegenius.fleetapp_v2.parameters.repositories;
 
+import com.kindsonthegenius.fleetapp_v2.parameters.models.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.kindsonthegenius.fleetms.models.Supplier;
 
 @Repository
 public interface SupplierRepository extends JpaRepository<Supplier, Integer> {

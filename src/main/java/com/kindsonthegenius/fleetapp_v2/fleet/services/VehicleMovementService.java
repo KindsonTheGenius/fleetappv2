@@ -1,13 +1,12 @@
-package com.kindsonthegenius.fleetms.services;
+package com.kindsonthegenius.fleetapp_v2.fleet.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kindsonthegenius.fleetapp_v2.fleet.models.VehicleMovement;
+import com.kindsonthegenius.fleetapp_v2.fleet.repositories.VehicleMovementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kindsonthegenius.fleetms.models.VehicleMovement;
-import com.kindsonthegenius.fleetms.repositories.VehicleMovementRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VehicleMovementService {
@@ -21,8 +20,8 @@ public class VehicleMovementService {
 	}	
 	
 	//Get VehicleMovement By Id
-	public Optional<VehicleMovement> findById(int id) {
-		return vehicleMovementRepository.findById(id);
+	public VehicleMovement findById(int id) {
+		return vehicleMovementRepository.findById(id).orElse(null);
 	}	
 	
 	//Delete VehicleMovement

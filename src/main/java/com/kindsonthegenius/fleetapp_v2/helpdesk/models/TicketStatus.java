@@ -1,4 +1,4 @@
-package com.kindsonthegenius.fleetapp_v2.accounts.models;
+package com.kindsonthegenius.fleetapp_v2.helpdesk.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -12,6 +12,6 @@ import javax.persistence.Entity;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class InvoiceStatus extends CommonObject {
+public class TicketStatus extends CommonObject {
 
 }

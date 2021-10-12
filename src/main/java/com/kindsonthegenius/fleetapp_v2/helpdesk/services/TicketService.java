@@ -1,7 +1,7 @@
-package com.kindsonthegenius.fleetapp_v2.accounts.services;
+package com.kindsonthegenius.fleetapp_v2.helpdesk.services;
 
-import com.kindsonthegenius.fleetapp_v2.accounts.models.Invoice;
-import com.kindsonthegenius.fleetapp_v2.accounts.repositories.InvoiceRepository;
+import com.kindsonthegenius.fleetapp_v2.helpdesk.models.Ticket;
+import com.kindsonthegenius.fleetapp_v2.helpdesk.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,28 +9,28 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class InvoiceService {
+public class TicketService {
 	
 	@Autowired
-	private InvoiceRepository invoiceRepository;
+	private TicketRepository invoiceRepository;
 	
-	//Get All Invoices
-	public List<Invoice> findAll(){
+	//Get All Tickets
+	public List<Ticket> findAll(){
 		return invoiceRepository.findAll();
 	}	
 	
-	//Get Invoice By Id
-	public Optional<Invoice> findById(int id) {
+	//Get Ticket By Id
+	public Optional<Ticket> findById(int id) {
 		return invoiceRepository.findById(id);
 	}	
 	
-	//Delete Invoice
+	//Delete Ticket
 	public void delete(int id) {
 		invoiceRepository.deleteById(id);
 	}
 	
-	//Update Invoice
-	public void save(Invoice invoice) {
+	//Update Ticket
+	public void save(Ticket invoice) {
 		invoiceRepository.save(invoice);
 	}
 

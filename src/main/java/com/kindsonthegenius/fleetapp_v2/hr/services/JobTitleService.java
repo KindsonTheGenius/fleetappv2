@@ -1,13 +1,12 @@
-package com.kindsonthegenius.fleetms.services;
+package com.kindsonthegenius.fleetapp_v2.hr.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kindsonthegenius.fleetapp_v2.hr.models.JobTitle;
+import com.kindsonthegenius.fleetapp_v2.hr.repositories.JobTitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kindsonthegenius.fleetms.models.JobTitle;
-import com.kindsonthegenius.fleetms.repositories.JobTitleRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobTitleService {

@@ -1,12 +1,12 @@
-package com.kindsonthegenius.fleetms.models;
-
-import javax.persistence.Entity;
+package com.kindsonthegenius.fleetapp_v2.fleet.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
+import com.kindsonthegenius.fleetapp_v2.parameters.models.CommonObject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.Entity;
 
 @Entity
 @Data

@@ -1,53 +1,43 @@
-package com.kindsonthegenius.fleetapp_v2.accounts.controllers;
+package com.kindsonthegenius.fleetapp_v2.helpdesk.controllers;
 
-import java.util.Optional;
-
-import com.kindsonthegenius.fleetapp_v2.accounts.models.InvoiceStatus;
-import com.kindsonthegenius.fleetapp_v2.accounts.services.InvoiceStatusService;
+import com.kindsonthegenius.fleetapp_v2.helpdesk.models.TicketStatus;
+import com.kindsonthegenius.fleetapp_v2.helpdesk.services.TicketStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
-public class InvoiceStatusController {
+public class TicketStatusController {
 
-	@Autowired private InvoiceStatusService invoiceStatusService;
+	@Autowired private TicketStatusService ticketStatusService;
 	
-	//Get All InvoiceStatuss
-	@GetMapping("accounts/invoiceStatuses")
+	//Get All TicketStatuss
+	@GetMapping("/helpdesk/ticketStatuses")
 	public String findAll(Model model){		
-		model.addAttribute("invoiceStatuses", invoiceStatusService.findAll());
-		return "/accounts/invoiceStatus";
+		model.addAttribute("ticketStatuses", ticketStatusService.findAll());
+		return "/helpdesk/ticketStatuses";
 	}	
 	
-	@RequestMapping("invoiceStatuses/findById") 
+	@RequestMapping("/helpdesk/ticketStatus/{id}")
 	@ResponseBody
-	public Optional<InvoiceStatus> findById(Integer id)
+	public Optional<TicketStatus> findById(@PathVariable Integer id)
 	{
-		return invoiceStatusService.findById(id);
+		return ticketStatusService.findById(id);
 	}
 	
-	//Add InvoiceStatus
-	@PostMapping(value="invoiceStatuses/addNew")
-	public String addNew(InvoiceStatus invoiceStatus) {
-		invoiceStatusService.save(invoiceStatus);
-		return "redirect:/invoiceStatuses";
-	}	
-	
-	@RequestMapping(value="invoiceStatuses/update", method = {RequestMethod.PUT, RequestMethod.GET})
-	public String update(InvoiceStatus invoiceStatus) {
-		invoiceStatusService.save(invoiceStatus);
-		return "redirect:/invoiceStatuses";
+	//Add TicketStatus
+	@PostMapping(value="/helpdesk/ticketStatuses")
+	public String addNew(TicketStatus ticketStatus) {
+		ticketStatusService.save(ticketStatus);
+		return "redirect:/helpdesk/ticketStatuses";
 	}
 	
-	@RequestMapping(value="invoiceStatuses/delete", method = {RequestMethod.DELETE, RequestMethod.GET})	
-	public String delete(Integer id) {
-		invoiceStatusService.delete(id);
-		return "redirect:/invoiceStatuses";
+	@RequestMapping(value="helpdesk/ticketStatus/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
+	public String delete(@PathVariable Integer id) {
+		ticketStatusService.delete(id);
+		return "redirect:/helpdesk/ticketStatuses";
 	}
 }

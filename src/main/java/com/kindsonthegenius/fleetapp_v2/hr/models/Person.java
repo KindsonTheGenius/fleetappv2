@@ -1,20 +1,15 @@
-package com.kindsonthegenius.fleetms.models;
+package com.kindsonthegenius.fleetapp_v2.hr.models;
 
-import java.util.Date;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
-
-import org.hibernate.annotations.Formula;
-import org.springframework.format.annotation.DateTimeFormat;
-
+import com.kindsonthegenius.fleetapp_v2.parameters.models.Country;
+import com.kindsonthegenius.fleetapp_v2.parameters.models.State;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor

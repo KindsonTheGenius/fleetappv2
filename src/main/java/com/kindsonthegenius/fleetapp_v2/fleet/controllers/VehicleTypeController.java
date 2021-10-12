@@ -1,18 +1,13 @@
-package com.kindsonthegenius.fleetms.controllers;
+package com.kindsonthegenius.fleetapp_v2.fleet.controllers;
 
 import java.util.Optional;
 
+import com.kindsonthegenius.fleetapp_v2.fleet.models.VehicleType;
+import com.kindsonthegenius.fleetapp_v2.fleet.services.VehicleTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.kindsonthegenius.fleetms.models.VehicleType;
-import com.kindsonthegenius.fleetms.services.VehicleTypeService;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class VehicleTypeController {
@@ -20,37 +15,30 @@ public class VehicleTypeController {
 	@Autowired private VehicleTypeService vehicleTypeService;
 	
 	//Get All VehicleTypes
-	@GetMapping("vehicleTypes")
+	@GetMapping("/fleet/vehicleTypes")
 	public String findAll(Model model){		
 		model.addAttribute("vehicleTypes", vehicleTypeService.findAll());
-		return "vehicleType";
+		return "/fleet/vehicleTypes";
 	}	
 	
-	@RequestMapping("vehicleTypes/findById") 
+	@RequestMapping("/fleet/vehicleType/{id}")
 	@ResponseBody
-	public Optional<VehicleType> findById(Integer id)
+	public Optional<VehicleType> findById(@PathVariable Integer id)
 	{
 		return vehicleTypeService.findById(id);
 	}
 	
 	//Add VehicleType
-	@PostMapping(value="vehicleTypes/addNew")
+	@PostMapping(value="/fleet/vehicleTypes")
 	public String addNew(VehicleType vehicleType) {
 		vehicleTypeService.save(vehicleType);
-		return "redirect:/vehicleTypes";
+		return "redirect:/fleet/vehicleTypes";
 	}	
-	
-	@RequestMapping(value="vehicleTypes/update", method = {RequestMethod.PUT, RequestMethod.GET})
-	public String update(VehicleType vehicleType) {
-		vehicleTypeService.save(vehicleType);
-		return "redirect:/vehicleTypes";
-	}
-	
-	@RequestMapping(value="vehicleTypes/delete", method = {RequestMethod.DELETE, RequestMethod.GET})	
-	public String delete(Integer id) {
-		vehicleTypeService.delete(id);
-		return "redirect:/vehicleTypes";
-	}
 
+	@RequestMapping(value="fleet/vehicleType/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
+	public String delete(@PathVariable Integer id) {
+		vehicleTypeService.delete(id);
+		return "redirect:/fleet/vehicleTypes";
+	}
 
 }

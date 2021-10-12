@@ -1,19 +1,19 @@
-package com.kindsonthegenius.fleetms.services;
+package com.kindsonthegenius.fleetapp_v2.security.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kindsonthegenius.fleetapp_v2.security.models.User;
+import com.kindsonthegenius.fleetapp_v2.security.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.kindsonthegenius.fleetms.models.User;
-import com.kindsonthegenius.fleetms.repositories.UserRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
 	
-	@Autowired private BCryptPasswordEncoder encoder;
+	@Autowired
+    private BCryptPasswordEncoder encoder;
 	
 	@Autowired
 	private UserRepository userRepository;

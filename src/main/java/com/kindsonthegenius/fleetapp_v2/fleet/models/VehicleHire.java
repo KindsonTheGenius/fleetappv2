@@ -1,26 +1,21 @@
-package com.kindsonthegenius.fleetms.models;
+package com.kindsonthegenius.fleetapp_v2.fleet.models;
 
-import java.time.LocalTime;
-import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
+import com.kindsonthegenius.fleetapp_v2.parameters.models.Client;
+import com.kindsonthegenius.fleetapp_v2.parameters.models.Location;
+import com.kindsonthegenius.fleetapp_v2.security.models.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VehicleHire {
+public class VehicleHire extends Auditable<String> {
 		
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,12 +27,12 @@ public class VehicleHire {
 	private Vehicle vehicle;
 	private Integer vehicleid;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOut;
 	
 	private String timeOut;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateIn;
 	
 	private String timeIn;

@@ -1,13 +1,12 @@
-package com.kindsonthegenius.fleetms.services;
+package com.kindsonthegenius.fleetapp_v2.fleet.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kindsonthegenius.fleetapp_v2.fleet.models.VehicleMake;
+import com.kindsonthegenius.fleetapp_v2.fleet.repositories.VehicleMakeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kindsonthegenius.fleetms.models.VehicleMake;
-import com.kindsonthegenius.fleetms.repositories.VehicleMakeRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VehicleMakeService {

@@ -3,12 +3,50 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
 
-
 <body>
+
 <div layout:fragment="content">
-
-    <h1>Welcome to the HR Module</h1>
-
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header"><i class="fa fa fa-bars"></i> Tickets</h3>
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
+                    <li><i class="fa fa-bars"></i><a href="/helpdesk">Helpdesk Home</a></li>
+                    <li><i class="fa fa-square-o"></i>Helpdesk</li>
+                </ol>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><h3><b>Tickets</b></h3></h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="/helpdesk/tickets" class="btn btn-primary">Manage Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-lg-4">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><h3><b>Ticket Status</b></h3></h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="/helpdesk/ticketStatuses" class="btn btn-primary">Manage Ticket Status</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    </section>
 </div>
+
 </body>
 </html>

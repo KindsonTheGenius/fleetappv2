@@ -1,13 +1,12 @@
-package com.kindsonthegenius.fleetms.services;
+package com.kindsonthegenius.fleetapp_v2.parameters.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kindsonthegenius.fleetapp_v2.parameters.models.Location;
+import com.kindsonthegenius.fleetapp_v2.parameters.repositories.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kindsonthegenius.fleetms.models.Location;
-import com.kindsonthegenius.fleetms.repositories.LocationRepository;
+import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -20,8 +19,8 @@ public class LocationService {
 		return (List<Location>) locationRepository.findAll();
 	}
 
-	public Optional<Location> findById(Integer id) {
-		return locationRepository.findById(id);
+	public Location findById(Integer id) {
+		return locationRepository.findById(id).orElse(null);
 	}
 	
 	public void save(Location location) {

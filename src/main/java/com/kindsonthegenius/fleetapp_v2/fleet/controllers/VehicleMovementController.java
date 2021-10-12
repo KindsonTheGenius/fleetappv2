@@ -1,20 +1,16 @@
-package com.kindsonthegenius.fleetms.controllers;
+package com.kindsonthegenius.fleetapp_v2.fleet.controllers;
 
 import java.util.Optional;
 
+import com.kindsonthegenius.fleetapp_v2.fleet.models.VehicleHire;
+import com.kindsonthegenius.fleetapp_v2.fleet.models.VehicleMovement;
+import com.kindsonthegenius.fleetapp_v2.fleet.services.VehicleMovementService;
+import com.kindsonthegenius.fleetapp_v2.fleet.services.VehicleService;
+import com.kindsonthegenius.fleetapp_v2.parameters.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.kindsonthegenius.fleetms.models.VehicleMovement;
-import com.kindsonthegenius.fleetms.services.LocationService;
-import com.kindsonthegenius.fleetms.services.VehicleMovementService;
-import com.kindsonthegenius.fleetms.services.VehicleService;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class VehicleMovementController {
@@ -22,41 +18,45 @@ public class VehicleMovementController {
 	@Autowired private VehicleMovementService vehicleMovementService;
 	@Autowired private LocationService locationService;
 	@Autowired private VehicleService vehicleService;
-	
-	//Get All VehicleMovements
-	@GetMapping("vehicleMovements")
-	public String findAll(Model model){		
-		model.addAttribute("vehicleMovements", vehicleMovementService.findAll());
-		model.addAttribute("locations", locationService.findAll());
-		model.addAttribute("vehicles", vehicleService.findAll());
 
-		return "vehicleMovement";
-	}	
-	
-	@RequestMapping("vehicleMovements/findById") 
-	@ResponseBody
-	public Optional<VehicleMovement> findById(Integer id)
-	{
-		return vehicleMovementService.findById(id);
+	public Model addModelAttributes(Model model){
+		model.addAttribute("locations1", locationService.findAll());
+		model.addAttribute("locations2", locationService.findAll());
+		model.addAttribute("vehicles", vehicleService.findAll());
+		return  model;
 	}
-	
+	//Get All VehicleMovements
+	@GetMapping("fleet/movements")
+	public String findAll(Model model){
+		model.addAttribute("movements", vehicleMovementService.findAll());
+		return "fleet/movements";
+	}
+
+	@GetMapping("/fleet/movementAdd")
+	public String addMovement(Model model){
+		addModelAttributes(model);
+		return "/fleet/movementAdd";
+	}
+
+	@GetMapping("/fleet/movement/{op}/{id}")
+	public String editMovement(Model model, @PathVariable Integer id, @PathVariable String op){
+		VehicleMovement movement = vehicleMovementService.findById(id);
+		model.addAttribute("movement", movement);
+		addModelAttributes(model);
+		return "/fleet/movement"+op;
+	}
+
 	//Add VehicleMovement
-	@PostMapping(value="vehicleMovements/addNew")
+	@PostMapping("/fleet/movements")
 	public String addNew(VehicleMovement vehicleMovement) {
 		vehicleMovementService.save(vehicleMovement);
-		return "redirect:/vehicleMovements";
-	}	
-	
-	@RequestMapping(value="vehicleMovements/update", method = {RequestMethod.PUT, RequestMethod.GET})
-	public String update(VehicleMovement vehicleMovement) {
-		vehicleMovementService.save(vehicleMovement);
-		return "redirect:/vehicleMovements";
+		return "redirect:/fleet/movements";
 	}
 	
-	@RequestMapping(value="vehicleMovements/delete", method = {RequestMethod.DELETE, RequestMethod.GET})	
-	public String delete(Integer id) {
+	@RequestMapping(value="/fleet/movements/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
+	public String delete(@PathVariable Integer id) {
 		vehicleMovementService.delete(id);
-		return "redirect:/vehicleMovements";
+		return "redirect:/fleet/movements";
 	}
 
 

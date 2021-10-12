@@ -1,7 +1,11 @@
-package com.kindsonthegenius.fleetms.controllers;
+package com.kindsonthegenius.fleetapp_v2.parameters.controllers;
 
 import java.util.Optional;
 
+import com.kindsonthegenius.fleetapp_v2.parameters.models.Contact;
+import com.kindsonthegenius.fleetapp_v2.parameters.services.ContactService;
+import com.kindsonthegenius.fleetapp_v2.parameters.services.CountryService;
+import com.kindsonthegenius.fleetapp_v2.parameters.services.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,45 +15,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kindsonthegenius.fleetms.models.Contact;
-import com.kindsonthegenius.fleetms.services.ContactService;
-import com.kindsonthegenius.fleetms.services.CountryService;
-import com.kindsonthegenius.fleetms.services.EmployeeTypeService;
-import com.kindsonthegenius.fleetms.services.JobTitleService;
-import com.kindsonthegenius.fleetms.services.StateService;
-
 @Controller
 public class ContactController {
 	
 	@Autowired private StateService stateService;
-	@Autowired private CountryService countryService;	
+	@Autowired private CountryService countryService;
 	@Autowired private ContactService contactService;
 	
-	//Get All Contacts
-	@GetMapping("/contacts")
+	@GetMapping("/parameters/contacts")
 	public String findAll(Model model){		
 		model.addAttribute("countries", countryService.findAll());
 		model.addAttribute("states", stateService.findAll());
 		model.addAttribute("contacts", contactService.findAll());
-		return "contact";
-	}	
-	
+		return "/parameters/contacts";
+	}
+
+	@GetMapping("/parameters/contactAdd")
+	public String contactAdd(){
+		return "/parameters/contactAdd";
+	}
+
 	@RequestMapping("contacts/findById") 
 	@ResponseBody
 	public Optional<Contact> findById(Integer id)
 	{
 		return contactService.findById(id);
 	}
-	
+
+
 	//Add Contact
 	@PostMapping(value="contacts/addNew")
 	public String addNew(Contact contact) {
-		contactService.save(contact);
-		return "redirect:/contacts";
-	}	
-	
-	@RequestMapping(value="contacts/update", method = {RequestMethod.PUT, RequestMethod.GET})
-	public String update(Contact contact) {
 		contactService.save(contact);
 		return "redirect:/contacts";
 	}
@@ -59,5 +55,4 @@ public class ContactController {
 		contactService.delete(id);
 		return "redirect:/contacts";
 	}
-
 }

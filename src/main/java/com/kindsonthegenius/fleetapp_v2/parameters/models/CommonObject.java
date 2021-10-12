@@ -1,16 +1,18 @@
-package com.kindsonthegenius.fleetms.models;
+package com.kindsonthegenius.fleetapp_v2.parameters.models;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.kindsonthegenius.fleetapp_v2.security.models.Auditable;
+import com.kindsonthegenius.fleetapp_v2.security.models.User;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 @MappedSuperclass
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class CommonObject extends Auditable<String>{
+public class CommonObject extends Auditable<String> {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

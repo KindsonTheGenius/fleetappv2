@@ -11,8 +11,8 @@
             <div class="col-lg-12">
                 <h3 class="page-header"><i class="fa fa fa-bars"></i> Job Titles</h3>
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a accountsef="/index">Home</a></li>
-                    <li><i class="fa fa-bars"></i><a accountsef="/accounts">HR</a></li>
+                    <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
+                    <li><i class="fa fa-bars"></i><a href="/accounts">HR</a></li>
                     <li><i class="fa fa-square-o"></i>Job Titles</li>
                 </ol>
             </div>
@@ -20,7 +20,7 @@
         <div class="container">
             <section class="panel">
                 <div style="padding: 10px">
-                    <form class="form-inline" role="form" th:action="@{/accounts/invoiceStatuss}"  method="post" >
+                    <form class="form-inline" role="form" th:action="@{/accounts/invoiceStatuses}"  method="post" >
                         <div class="form-group">
                             <label class="sr-only">Id</label>
                             <input type="text" id="txtId" name="id" size="5" readonly class="form-control">
@@ -50,11 +50,11 @@
                         <td th:text="${invoiceStatus.details}"></td>
                         <td>
                             <div class="btn-group">
-                                <a id="display"  th:accountsef="@{'/accounts/invoiceStatus/'+${invoiceStatus.id}}"
+                                <a id="display"  th:href="@{'/accounts/invoiceStatus/'+${invoiceStatus.id}}"
                                    class="btn btn-primary"><i class="icon_plus_alt2"></i></a>
                                 <a class="btn btn-success"><i class="icon_check_alt2"></i></a>
                                 <a class="btn btn-danger" onclick="return confirm('Are you sure you want delete?')"
-                                   th:accountsef="@{'/accounts/invoiceStatus/delete/'+${invoiceStatus.id}}">
+                                   th:href="@{'/accounts/invoiceStatus/delete/'+${invoiceStatus.id}}">
                                     <i class="icon_close_alt2"></i></a>
                             </div>
                         </td>
@@ -71,8 +71,8 @@
         $('document').ready(function () {
             $('.table #display').on('click', function (event) {
                 event.preventDefault();
-                var accountsef = $(this).attr('accountsef');
-                $.get(accountsef, function (invoiceStatus, status) {
+                var href = $(this).attr('href');
+                $.get(href, function (invoiceStatus, status) {
                     $('#txtId').val(invoiceStatus.id);
                     $('#txtDescription').val(invoiceStatus.description);
                     $('#txtDetails').val(invoiceStatus.details);

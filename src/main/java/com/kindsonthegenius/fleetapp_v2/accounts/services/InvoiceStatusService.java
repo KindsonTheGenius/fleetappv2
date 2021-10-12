@@ -1,13 +1,12 @@
-package com.kindsonthegenius.fleetms.services;
+package com.kindsonthegenius.fleetapp_v2.accounts.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kindsonthegenius.fleetapp_v2.accounts.models.InvoiceStatus;
+import com.kindsonthegenius.fleetapp_v2.accounts.repositories.InvoiceStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kindsonthegenius.fleetms.models.InvoiceStatus;
-import com.kindsonthegenius.fleetms.repositories.InvoiceStatusRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InvoiceStatusService {

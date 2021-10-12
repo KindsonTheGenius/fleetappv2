@@ -1,9 +1,8 @@
-package com.kindsonthegenius.fleetms.repositories;
+package com.kindsonthegenius.fleetapp_v2.parameters.repositories;
 
+import com.kindsonthegenius.fleetapp_v2.parameters.models.Location;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import com.kindsonthegenius.fleetms.models.Location;
 
 @Repository
 public interface LocationRepository extends CrudRepository<Location, Integer> {

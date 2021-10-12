@@ -1,7 +1,7 @@
-package com.kindsonthegenius.fleetapp_v2.accounts.services;
+package com.kindsonthegenius.fleetapp_v2.helpdesk.services;
 
-import com.kindsonthegenius.fleetapp_v2.accounts.models.InvoiceStatus;
-import com.kindsonthegenius.fleetapp_v2.accounts.repositories.InvoiceStatusRepository;
+import com.kindsonthegenius.fleetapp_v2.helpdesk.models.TicketStatus;
+import com.kindsonthegenius.fleetapp_v2.helpdesk.repositories.TicketStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,29 +9,29 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class InvoiceStatusService {
+public class TicketStatusService {
 	
 	@Autowired
-	private InvoiceStatusRepository invoiceStatusRepository;
+	private TicketStatusRepository ticketStatusRepository;
 	
-	//Get All InvoiceStatuss
-	public List<InvoiceStatus> findAll(){
-		return invoiceStatusRepository.findAll();
+	//Get All TicketStatuss
+	public List<TicketStatus> findAll(){
+		return ticketStatusRepository.findAll();
 	}	
 	
-	//Get InvoiceStatus By Id
-	public Optional<InvoiceStatus> findById(int id) {
-		return invoiceStatusRepository.findById(id);
+	//Get TicketStatus By Id
+	public Optional<TicketStatus> findById(int id) {
+		return ticketStatusRepository.findById(id);
 	}	
 	
-	//Delete InvoiceStatus
+	//Delete TicketStatus
 	public void delete(int id) {
-		invoiceStatusRepository.deleteById(id);
+		ticketStatusRepository.deleteById(id);
 	}
 	
-	//Update InvoiceStatus
-	public void save( InvoiceStatus invoiceStatus) {
-		invoiceStatusRepository.save(invoiceStatus);
+	//Update TicketStatus
+	public void save( TicketStatus ticketStatus) {
+		ticketStatusRepository.save(ticketStatus);
 	}
 
 }
