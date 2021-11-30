@@ -12,21 +12,27 @@
   <title>FLEETMS - Fleet Management System v.2</title>
 
   <!-- Bootstrap CSS -->
-  <link th:href="@{/}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
   <!-- bootstrap theme -->
   <link th:href="@{/css/bootstrap-theme.css}" rel="stylesheet">
   <!--external css-->
   <!-- font icon -->
   <link th:href="@{/css/elegant-icons-style.css}" rel="stylesheet" />
-  <link th:href="@{css/font-awesome.css}" rel="stylesheet" />
-  <!-- full calendar css-->
-  <link th:href="@{assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css}" rel="stylesheet" />
-  <link th:href="@{assets/fullcalendar/fullcalendar/fullcalendar.css}" rel="stylesheet" />
+    <!--  <link th:href="@{css/font-awesome.min.css}" rel="stylesheet" />-->
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+
+<!-- Load font awesome icons -->
+<!--
+x<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">-->
+
+    <!-- full calendar css-->
+  <link th:href="@{/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css}" rel="stylesheet" />
+  <link th:href="@{/assets/fullcalendar/fullcalendar/fullcalendar.css}" rel="stylesheet" />
   <!-- easy pie chart-->
-  <link th:href="@{assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css}" rel="stylesheet" type="text/css" media="screen" />
+  <link th:href="@{/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css}" rel="stylesheet" type="text/css" media="screen" />
   <!-- owl carousel -->
   <link rel="stylesheet" th:href="@{/css/owl.carousel.css}" type="text/css">
-  <link th:href="@{css/jquery-jvectormap-1.2.2.css}" rel="stylesheet">
+  <link th:href="@{/css/jquery-jvectormap-1.2.2.css}" rel="stylesheet">
   <!-- Custom styles -->
   <link rel="stylesheet" th:href="@{/css/fullcalendar.css}">
   <link th:href="@{/css/widgets.css}" rel="stylesheet">
@@ -34,7 +40,6 @@
   <link th:href="@{/css/style-responsive.css}" rel="stylesheet" />
   <link th:href="@{/css/xcharts.min.css}" rel=" stylesheet">
   <link th:href="@{/css/jquery-ui-1.10.4.min.css}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/static/css/bootstrap-theme.css}">
     <!-- =======================================================
       Theme Name: NiceAdmin
       Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -52,7 +57,7 @@
       </div>
 
       <!--logo start-->
-      <a href="index.html" class="logo">Fleet <span class="lite">MS</span></a>
+      <a href="/index" class="logo">Fleet <span class="lite">MS</span> v.2</a>
       <!--logo end-->
 
       <div class="nav search-row" id="top_menu">
@@ -169,7 +174,7 @@
               </li>
               <li>
                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="../../../../../../../Downloads/NiceAdmin/img/avatar-mini.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="../img/avatar-mini.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Greg  Martin</span>
                                     <span class="time">1 min</span>
@@ -181,7 +186,7 @@
               </li>
               <li>
                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="../../../../../../../Downloads/NiceAdmin/img/avatar-mini2.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="../img/avatar-mini2.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Bob   Mckenzie</span>
                                     <span class="time">5 mins</span>
@@ -193,7 +198,7 @@
               </li>
               <li>
                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="../../../../../../../Downloads/NiceAdmin/img/avatar-mini3.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="../img/avatar-mini3.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Phillip   Park</span>
                                     <span class="time">2 hrs</span>
@@ -205,7 +210,7 @@
               </li>
               <li>
                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="../../../../../../../Downloads/NiceAdmin/img/avatar-mini4.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="../img/avatar-mini4.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Ray   Munoz</span>
                                     <span class="time">1 day</span>
@@ -268,39 +273,39 @@
           </li>
           <!-- alert notification end-->
           <!-- user login dropdown start-->
-          <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="profile-ava">
-                                <img alt="" src="../../../../../../../Downloads/NiceAdmin/img/avatar1_small.jpg">
-                            </span>
-                            <span class="username">Jenifer Smith</span>
-                            <b class="caret"></b>
-                        </a>
-            <ul class="dropdown-menu extended logout">
-              <div class="log-arrow-up"></div>
-              <li class="eborder-top">
-                <a href="#"><i class="icon_profile"></i> My Profile</a>
-              </li>
-              <li>
-                <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
-              </li>
-              <li>
-                <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
-              </li>
-              <li>
-                <a href="#"><i class="icon_chat_alt"></i> Chats</a>
-              </li>
-              <li>
-                <a href="assets/login.html"><i class="icon_key_alt"></i> Log Out</a>
-              </li>
-              <li>
-                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-              </li>
-              <li>
-                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-              </li>
-            </ul>
-          </li>
+            <li class="dropdown">
+                <a sec:authorize="isAuthenticated()" data-toggle="dropdown" class="dropdown-toggle" th:href="@{'/img/photos/' + ${#authentication.getPrincipal().getUsername()} +'.jpg'}">
+                <span class="profile-ava">
+                    <img alt="" th:src="@{'/img/photos/' + ${#authentication.getPrincipal().getUsername()} +'.jpg'}" height="38" width="38">
+                </span>
+                    <span class="username" sec:authentication="name">User</span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu extended logout">
+                    <div class="log-arrow-up"></div>
+                    <li class="eborder-top">
+                        <a th:href="@{/employee/profile}"><i class="icon_profile"></i> My Profile</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon_chat_alt"></i> Chats</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/logout}"><i class="icon_key_alt"></i> Log Out</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon_key_alt"></i> Documentation</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon_key_alt"></i> Documentation</a>
+                    </li>
+                </ul>
+            </li>
           <!-- user login dropdown end -->
         </ul>
         <!-- notificatoin dropdown end-->
@@ -310,7 +315,7 @@
 
       <!--sidebar start-->
       <aside>
-          <div id="sidebar" class="nav-collapse ">
+          <div id="sidebar" class="nav-collapse" >
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">
                   <li class="active">
@@ -321,7 +326,7 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_cart"></i>
+                          <i class="fa fa-truck"></i>
                           <span>Fleet</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -331,7 +336,7 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_profile"></i>
+                          <i class="fa fa-users"></i>
                           <span>HR</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -341,7 +346,7 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_film"></i>
+                          <i class="fa fa-usd"></i>
                           <span>Accounts</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -351,7 +356,7 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_toolbox"></i>
+                          <i class="fa fa-question"></i>
                           <span>HelpDesk</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -361,7 +366,7 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="fa fa-gears"></i>
+                          <i class="fa fa-gear"></i>
                           <span>Parameters</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -372,14 +377,24 @@
 
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_book"></i>
+                          <i class="fa fa-book"></i>
                           <span>Reports</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" th:href="@{/blank}">Vehicle Reports</a></li>
-                          <li><a class="" th:href="@{/blank}">Employee Reports</a></li>
-                          <li><a class="" th:href="@{/blank}">Accounts Reports</a></li>
+                          <li><a class="" th:href="@{/reports}">Reports Home</a></li>
+                          <li><a class="" th:href="@{/reports}">New Report</a></li>
+                          <li><a class="" th:href="@{/reports}">Summary Page</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="fa fa-key"></i>
+                          <span>Security</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="/security">Security Home</a></li>
                       </ul>
                   </li>
               </ul>
@@ -390,12 +405,10 @@
 
     <!--main content start-->
     <section id="main-content">
-
         <div layout:fragment="content">
 
         </div>
         </section>
-
       <div class="text-right">
         <div class="credits">
           <!--
@@ -453,6 +466,7 @@
     <script th:src="@{/js/sparklines.js}"></script>
     <script th:src="@{/js/charts.js}"></script>
     <script th:src="@{/js/jquery.slimscroll.min.js}"></script>
+
     <script>
       //knob
       $(function() {
@@ -487,7 +501,7 @@
           series: {
             regions: [{
               values: gdpData,
-              scale: ['#000', '#000'],
+              scale: ['#000', '#000000'],
               normalizeFunction: 'polynomial'
             }]
           },

@@ -1,58 +1,56 @@
 package com.kindsonthegenius.fleetapp_v2.parameters.controllers;
 
-import java.util.Optional;
+import java.util.List;
 
 import com.kindsonthegenius.fleetapp_v2.parameters.models.Contact;
 import com.kindsonthegenius.fleetapp_v2.parameters.services.ContactService;
-import com.kindsonthegenius.fleetapp_v2.parameters.services.CountryService;
-import com.kindsonthegenius.fleetapp_v2.parameters.services.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ContactController {
-	
-	@Autowired private StateService stateService;
-	@Autowired private CountryService countryService;
-	@Autowired private ContactService contactService;
-	
+
+	@Autowired
+	private ContactService contactService;
+
 	@GetMapping("/parameters/contacts")
-	public String findAll(Model model){		
-		model.addAttribute("countries", countryService.findAll());
-		model.addAttribute("states", stateService.findAll());
-		model.addAttribute("contacts", contactService.findAll());
+	public String getAll(Model model){
+		List<Contact> contacts =   contactService.findAll();
+		model.addAttribute("contacts", contacts);
 		return "/parameters/contacts";
 	}
 
-	@GetMapping("/parameters/contactAdd")
-	public String contactAdd(){
-		return "/parameters/contactAdd";
-	}
-
-	@RequestMapping("contacts/findById") 
+	//The Get Contact By Id
+	@GetMapping("/parameters/contact/{id}")
 	@ResponseBody
-	public Optional<Contact> findById(Integer id)
-	{
+	public Contact getContact(@PathVariable Integer id){
 		return contactService.findById(id);
 	}
 
-
-	//Add Contact
-	@PostMapping(value="contacts/addNew")
-	public String addNew(Contact contact) {
-		contactService.save(contact);
-		return "redirect:/contacts";
+	@GetMapping("/parameters/contactAdd")
+	public String addContact(){
+		return "parameters/contactAdd";
 	}
-	
-	@RequestMapping(value="contacts/delete", method = {RequestMethod.DELETE, RequestMethod.GET})	
-	public String delete(Integer id) {
+
+	//The op parameter is either Edit or Details
+	@GetMapping("/parameters/contact/{op}/{id}")
+	public String editContact(@PathVariable Integer id, @PathVariable String op, Model model){
+		Contact contact = contactService.findById(id);
+		model.addAttribute("contact", contact);
+		return "/parameters/contact"+ op;
+	}
+
+	@PostMapping("/parameters/contacts")
+	public String save(Contact contact){
+		contactService.save(contact);
+		return "redirect:/parameters/contacts";
+	}
+
+	@RequestMapping(value = "/parameters/contacts/delete/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
+	public  String delete(@PathVariable Integer id){
 		contactService.delete(id);
-		return "redirect:/contacts";
+		return "redirect:/parameters/contacts";
 	}
 }

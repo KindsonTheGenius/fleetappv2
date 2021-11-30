@@ -136,7 +136,7 @@
                                     <select class="form-control" id="ddlEmployeeAdd" name="employeeid">
                                         <option th:value="${null}" disabled>-SELECT-</option>
                                         <option th:each="employee : ${employees}"
-                                                th:selected="${vehicleMake.id} == ${vehicle.vehiclemakeid} ? True: False"
+                                                th:selected="${employee.id} == ${vehicle.employeeid} ? True: False"
                                                 th:value="${employee.id}"
                                                 th:text="${employee.firstname}">
                                         </option>

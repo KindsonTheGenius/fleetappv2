@@ -19,8 +19,8 @@ public class TransactionService {
     }
 
     //Get Transaction By Id
-    public Optional<Transaction> findById(int id) {
-        return transactionRepository.findById(id);
+    public Transaction findById(int id) {
+        return transactionRepository.findById(id).orElse(null);
     }
 
     //Delete Transaction

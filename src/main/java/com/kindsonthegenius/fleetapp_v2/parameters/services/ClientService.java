@@ -20,12 +20,12 @@ public class ClientService {
 	}	
 	
 	//Get Client By Id
-	public Optional<Client> findById(int id) {
-		return clientRepository.findById(id);
+	public Client findById(int id) {
+		return clientRepository.findById(id).orElse(null);
 	}	
 	
 	//Delete Client
-	public void delete(int id) {
+	public void deleteById(int id) {
 		clientRepository.deleteById(id);
 	}
 	

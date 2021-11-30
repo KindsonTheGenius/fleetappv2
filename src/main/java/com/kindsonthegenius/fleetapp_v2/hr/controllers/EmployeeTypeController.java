@@ -17,14 +17,11 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeTypeController {
 
 	@Autowired
-	private EmployeeTypeRepository employeeTypeRepository;
-
-	@Autowired
 	private EmployeeTypeService employeeTypeService;
 
 	@GetMapping("/hr/employeeTypes")
 	public String parameters(Model model){
-		List<EmployeeType> employeeTypes = employeeTypeRepository.findAll();
+		List<EmployeeType> employeeTypes = employeeTypeService.findAll();
 		model.addAttribute("employeeTypes", employeeTypes);
 		return "hr/employeeTypes";
 	}

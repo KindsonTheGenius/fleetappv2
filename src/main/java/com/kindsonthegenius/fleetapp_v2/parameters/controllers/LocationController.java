@@ -40,7 +40,7 @@ public class LocationController {
 
 	@GetMapping("/parameters/locationAdd")
 	public String addLocation(Model model){
-		addModelAttributes(model);
+		model.addAttribute("countries", countryService.findAll());
 		return "parameters/locationAdd";
 	}
 
@@ -59,7 +59,7 @@ public class LocationController {
 		return "redirect:/parameters/locations";
 	}
 	
-	@RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})	
+	@RequestMapping(value="/parameters/locations/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
 	public String deleteById(@PathVariable Integer id) {
 		locationService.deleteById(id);
 		return "redirect:/parameters/locations";

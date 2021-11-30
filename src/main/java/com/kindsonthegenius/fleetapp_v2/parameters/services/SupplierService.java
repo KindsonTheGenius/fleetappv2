@@ -19,12 +19,12 @@ public class SupplierService {
 	}	
 	
 	//Get Supplier By Id
-	public Optional<Supplier> findById(int id) {
-		return supplierRepository.findById(id);
+	public Supplier findById(int id) {
+		return supplierRepository.findById(id).orElse(null);
 	}	
 	
 	//Delete Supplier
-	public void delete(int id) {
+	public void deleteById(int id) {
 		supplierRepository.deleteById(id);
 	}
 	

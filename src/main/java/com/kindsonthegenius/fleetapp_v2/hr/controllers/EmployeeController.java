@@ -90,11 +90,11 @@ public class EmployeeController {
 			file.transferTo(new File(baseDirectory + principal.getName() + ".jpg"));
 			return "redirect:/employees";
 	}
-	
-	
-	@RequestMapping(value="/employees/profile")
+
+	@RequestMapping(value="/employee/profile")
 	public String profile(Model model, Principal principal) {
 		String un = principal.getName();
+		addModelAttributes(model);
 		model.addAttribute("employee", employeeService.findByUsername(un));
 		return "profile";
 	}

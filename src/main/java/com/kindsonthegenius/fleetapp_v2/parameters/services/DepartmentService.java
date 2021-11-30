@@ -19,8 +19,8 @@ public class DepartmentService {
     }
 
     //Get Department By Id
-    public Optional<Department> findById(int id) {
-        return departmentRepository.findById(id);
+    public Department findById(int id) {
+        return departmentRepository.findById(id).orElse(null);
     }
 
     //Delete Department

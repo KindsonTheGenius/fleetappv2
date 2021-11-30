@@ -8,7 +8,7 @@
     <section class="wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Job Titles</h3>
+                <h3 class="page-header"><i class="fa fa fa-bars"></i> Employee Records</h3>
                 <ol class="breadcrumb">
                     <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
                     <li><i class="fa fa-bars"></i><a href="/hr">HR Home</a></li>
@@ -29,6 +29,24 @@
             <section class="panel">
                 <header class="panel-heading">
                     Employees Register
+                    <div class="modal fade" tabindex="-1" role="dialog" id="photoModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Photo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img id="employeePhoto" src="" width="90%" height="90%">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </header>
                 <table id="employeeTable" class="table table-striped table-advance table-hover">
                     <tbody>
@@ -73,6 +91,18 @@
     </section>
 </div>
 
+<th:block layout:fragment="script">
+    <script language="JavaScript">
+        $('document').ready(function () {
+            $('.table #photoButton').on('click',function(event) {
+                event.preventDefault();
+                var href = $(this).attr('href');
+                $('#photoModal #employeePhoto').attr('src', href);
+                $('#photoModal').modal();
+            });
+        })
+    </script>
+</th:block>
 
 </body>
 </html>

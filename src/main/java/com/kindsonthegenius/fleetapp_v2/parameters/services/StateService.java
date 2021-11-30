@@ -22,8 +22,13 @@ public class StateService {
 	//Get State By Id
 	public State findById(int id) {
 		return stateRepository.findById(id).orElse(null);
-	}	
-	
+	}
+
+	//Get State By Country id
+	public List<State > findByCountryid(int countryid) {
+		return stateRepository.getAllByCountryid(countryid);
+	}
+
 	//Delete State
 	public void delete(int id) {
 		stateRepository.deleteById(id);

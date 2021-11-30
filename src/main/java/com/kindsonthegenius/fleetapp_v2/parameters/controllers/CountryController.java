@@ -16,10 +16,17 @@ public class CountryController {
     private CountryService countryService;
 
     @GetMapping("/parameters/countries")
-    public String  getAll(Model model){
+    public String getAll(Model model){
         List<Country> countries =   countryService.findAll();
         model.addAttribute("countries", countries);
         return "/parameters/countries";
+    }
+
+    //The Get Country By Id
+    @GetMapping("/parameters/country/{id}")
+    @ResponseBody
+    public Country getCountry(@PathVariable Integer id){
+        return countryService.getById(id);
     }
 
     @GetMapping("/parameters/countryAdd")

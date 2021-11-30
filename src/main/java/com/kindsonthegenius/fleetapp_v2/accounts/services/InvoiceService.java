@@ -20,8 +20,8 @@ public class InvoiceService {
 	}	
 	
 	//Get Invoice By Id
-	public Optional<Invoice> findById(int id) {
-		return invoiceRepository.findById(id);
+	public Invoice findById(int id) {
+		return invoiceRepository.findById(id).orElse(null);
 	}	
 	
 	//Delete Invoice

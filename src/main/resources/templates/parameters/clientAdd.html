@@ -23,7 +23,7 @@
             <form class="form-horizontal" th:action="@{/parameters/clients}" method="post">
             <section class="panel">
                 <header class="panel-heading">
-                   Add New Country Record
+                   Add New Client Record
                 </header>
                 <div class="panel-body">
                     <div class="col-lg-6">
@@ -40,9 +40,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="txtDetailsAdd" class="col-sm-4 col-form-label">Details.: </label>
+                            <label for="txtEmailAdd" class="col-sm-4 col-form-label">Email</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="txtDetailsAdd" name="details" placeholder="Details">
+                                <input type="email" class="form-control" id="txtEmailAdd" name="email" placeholder="Email">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -60,18 +60,6 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group row">
-                            <label for="ddlStateAdd" class="col-sm-4 col-form-label">State/Province: </label>
-                            <div class="col-sm-6">
-                                <select class="form-control" id="ddlStateAdd" name="stateid">
-                                    <option>-SELECT-</option>
-                                    <option th:each="state : ${states}"
-                                            th:value="${state.id}"
-                                            th:text="${state.name}">
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label for="ddlCountryAdd" class="col-sm-4 col-form-label">Country: </label>
                             <div class="col-sm-6">
                                 <select class="form-control" id="ddlCountryAdd" name="countryid">
@@ -79,6 +67,18 @@
                                     <option th:each="country : ${countries}"
                                             th:value="${country.id}"
                                             th:text="${country.description}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ddlStateAdd" class="col-sm-4 col-form-label">State/Province: </label>
+                            <div class="col-sm-6">
+                                <select class="form-control" id="ddlStateAdd" name="stateid">
+                                    <option>-SELECT-</option>
+                                    <option th:each="state : ${states}"
+                                            th:value="${state.id}"
+                                            th:text="${state.name}">
                                     </option>
                                 </select>
                             </div>
@@ -102,9 +102,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="txtEmailAdd" class="col-sm-4 col-form-label">Email</label>
+                            <label for="txtDetailsAdd" class="col-sm-4 col-form-label">Details.: </label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" id="txtEmailAdd" name="email" placeholder="Email">
+                                <input type="text" class="form-control" id="txtDetailsAdd" name="details" placeholder="Details">
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                     <button type="submit" class="btn btn-primary">
                         Save
                     </button>
-                    <a href="/countries" class="btn  btn-warning">
+                    <a href="/parameters/clients" class="btn  btn-warning">
                         Exit
                     </a>
                 </div>
@@ -128,6 +128,22 @@
     </div>
     </section>
 </div>
-
+<th:block layout:fragment="script">
+    <script language="JavaScript">
+        $('document').ready(function () {
+            $('#ddlCountryAdd').on('change',function () {
+                $('#ddlStateAdd').empty().append('<option value="null">-SELECT-</option>');
+                var countryid = $(this).val();
+                var href = "http://localhost:8080/parameters/country/" + countryid
+                $.get(href, function (country, status) {
+                    var states = country.states;
+                    for (var i = 0; i <= states.length-1; i++) {
+                        $('#ddlStateAdd').append('<option value="' + states[i].id + '">' + states[i].name + '</option>');
+                    }
+                })
+            })
+        })
+    </script>
+</th:block>
 </body>
 </html>

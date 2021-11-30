@@ -1,5 +1,6 @@
 package com.kindsonthegenius.fleetapp_v2.parameters.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.kindsonthegenius.fleetapp_v2.parameters.models.Country;
@@ -28,6 +29,13 @@ public class StateController {
 	public String findAll(Model model){
 		addModelAttribute(model);
 		return "/parameters/states";
+	}
+
+	//Get States by country id
+	@GetMapping("/parameters/states/country/{countryid}")
+	@ResponseBody
+	public List<State> findAll(@PathVariable Integer countryid){
+		return stateService.findByCountryid(countryid);
 	}
 
 	@GetMapping("/parameters/stateAdd")

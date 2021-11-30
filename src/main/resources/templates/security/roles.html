@@ -9,18 +9,18 @@
     <section class="wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Job Titles</h3>
+                <h3 class="page-header"><i class="fa fa fa-bars"></i> Roles</h3>
                 <ol class="breadcrumb">
                     <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="/hr">HR</a></li>
-                    <li><i class="fa fa-square-o"></i>Job Titles</li>
+                    <li><i class="fa fa-bars"></i><a href="/security">Security Home</a></li>
+                    <li><i class="fa fa-square-o"></i>Roles</li>
                 </ol>
             </div>
         </div>
         <div class="container">
         <section class="panel table table-bordered">
             <div class="panel-heading" style="padding: 10px">
-                <form class="form-inline" role="form" th:action="@{/hr/jobTitles}"  method="post" >
+                <form class="form-inline" role="form" th:action="@{/security/roles}"  method="post" >
                     <div class="form-group">
                         <label class="sr-only">Id</label>
                         <input type="text" id="txtId" name="id" size="3" readonly class="form-control">
@@ -46,18 +46,15 @@
                 <th><i class="icon_calendar"></i> Details</th>
                 <th><i class="icon_cogs"></i> Action</th>
             </tr>
-            <tr th:each="jobTitle:${jobTitles}">
+            <tr th:each="role:${roles}">
                 <td><i class="fa fa-table"></i></td>
-                <td th:text="${jobTitle.description}"></td>
-                <td th:text="${jobTitle.details}"></td>
+                <td th:text="${role.description}"></td>
+                <td th:text="${role.details}"></td>
                 <td>
                     <div class="btn-group">
-                        <a th:href="@{'/hr/jobTitle/'+${jobTitle.id}}"
-                           class="btn btn-primary"><i class="icon_pencil-edit"></i></a>
-                        <a class="btn btn-success"><i class="icon_pencil-edit"></i></a>
-                        <a class="btn btn-danger" onclick="return confirm('Are you sure you want delete?')"
-                           th:href="@{'/hr/jobTitle/delete/'+${jobTitle.id}}">
-                            <i class="icon_close_alt2"></i></a>
+                        <a id="display" th:href="@{'/security/role/'+${role.id}}"
+                           class="btn btn-primary"><i class="icon_pencil-edit"></i>
+                        </a>
                     </div>
                 </td>
             </tr>
@@ -78,10 +75,10 @@
             $('.table #display').on('click', function (event) {
                 event.preventDefault();
                 var href = $(this).attr('href');
-                $.get(href, function (jobTitle, status) {
-                    $('#txtId').val(jobTitle.id);
-                    $('#txtDescription').val(jobTitle.description);
-                    $('#txtDetails').val(jobTitle.details);
+                $.get(href, function (role, status) {
+                    $('#txtId').val(role.id);
+                    $('#txtDescription').val(role.description);
+                    $('#txtDetails').val(role.details);
                 })
             })
         })

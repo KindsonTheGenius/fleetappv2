@@ -34,6 +34,7 @@
                 <table class="table table-striped table-advance table-hover">
                     <tbody>
                     <tr>
+                        <th></th>
                         <th><i class="icon_table"></i> Id</th>
                         <th><i class="icon_table"></i>Vehicle</th>
                         <th><i class="icon_table"></i>Start Date</th>
@@ -41,6 +42,7 @@
                         <th><i class="icon_cogs"></i> Action</th>
                     </tr>
                     <tr th:each="maintenance:${maintenances}">
+                        <td><i class="fa fa-table"></i></td>
                         <td th:text="${maintenance.id}">Id</td>
                         <td th:text="${maintenance.vehicle.name}">Vehicle</td>
                         <td th:text="${maintenance.startDate}">Start Date</td>

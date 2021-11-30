@@ -40,11 +40,13 @@
             <table class="table table-striped table-advance table-hover">
                 <tbody>
                 <tr>
+                    <th></th>
                     <th><i class="icon_profile"></i> Description</th>
                     <th><i class="icon_calendar"></i> Capital</th>
                     <th><i class="icon_cogs"></i> Action</th>
                 </tr>
                 <tr th:each="employeeType:${employeeTypes}">
+                    <td><i class="fa fa-table"></i></td>
                     <td th:text="${employeeType.description}"></td>
                     <td th:text="${employeeType.details}"></td>
                     <td>

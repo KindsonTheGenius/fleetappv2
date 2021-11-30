@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-
 public class Module extends CommonObject {
 
 }
