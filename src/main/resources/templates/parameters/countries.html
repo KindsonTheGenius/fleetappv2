@@ -19,11 +19,12 @@
     <div class="row">
         <div class="col-lg-12">
             <section class="panel" style="margin-bottom: 0px;">
-
                 <div class="panel-body">
-                    <a href="/parameters/countryAdd" class="btn btn-primary">
-                        Add New Country
-                    </a>
+                    <div class="col-lg-6"><a href="/parameters/countryAdd" class="btn btn-primary">New Country</a></div>
+                   <form th:action="@{/parameters/countries}">
+                        <div class="col-lg-4"><input type="text" class="form-control" name="keyword"></div>
+                        <div class="col-lg-2"><input type="submit" value="Search" class="form-control btn-success"></div>
+                   </form>
                 </div>
             </section>
             <section class="panel">
@@ -35,11 +36,11 @@
                     <tbody>
                     <tr>
                         <th></th>
-                        <th><i class="icon_profile"></i> Description</th>
-                        <th><i class="icon_calendar"></i> Capital</th>
-                        <th><i class="icon_mail_alt"></i> Code</th>
-                        <th><i class="icon_pin_alt"></i> Nationality</th>
-                        <th><i class="icon_mobile"></i> Continent</th>
+                        <th><i class="icon_profile"></i> <a th:href="@{'/parameters/countries/description?sortDir=' + ${reverseSortDir}}">Description</a></th>
+                        <th><i class="icon_calendar"></i> <a th:href="@{'/parameters/countries/capital?sortDir=' + ${reverseSortDir}}">Capital</a></th>
+                        <th><i class="icon_mail_alt"></i> <a th:href="@{'/parameters/countries/code?sortDir=' + ${reverseSortDir}}">Code</a></th>
+                        <th><i class="icon_pin_alt"></i> <a th:href="@{'/parameters/countries/nationality?sortDir=' + ${reverseSortDir}}">Nationality</a></th>
+                        <th><i class="icon_mobile"></i> <a th:href="@{'/parameters/countries/continent?sortDir=' + ${reverseSortDir}}">Continent</a></th>
                         <th><i class="icon_cogs"></i> Action</th>
                     </tr>
                     <tr th:each="country:${countries}">

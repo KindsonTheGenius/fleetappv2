@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller
@@ -16,11 +17,25 @@ public class CountryController {
     private CountryService countryService;
 
     @GetMapping("/parameters/countries")
-    public String getAll(Model model){
-        List<Country> countries =   countryService.findAll();
+    public String getAll(Model model, String keyword){
+        List<Country> countries;
+        countries = (keyword == null) ? countryService.findAll():  countryService.findByKeyword(keyword);
         model.addAttribute("countries", countries);
         return "/parameters/countries";
     }
+
+    @GetMapping("/parameters/countries/{field}")
+    public String getAllWithSort(Model model, @PathVariable String field, @PathParam("sortDir") String sortDir){
+        List<Country> countries;
+        countries = countryService.findCountryWithSorting2(field, sortDir);
+
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc")?"desc":"asc");
+
+        model.addAttribute("countries", countries);
+        return "/parameters/countries";
+    }
+
 
     //The Get Country By Id
     @GetMapping("/parameters/country/{id}")
