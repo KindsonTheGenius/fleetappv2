@@ -3,6 +3,9 @@ package com.kindsonthegenius.fleetapp_v2.parameters.services;
 import com.kindsonthegenius.fleetapp_v2.parameters.models.Country;
 import com.kindsonthegenius.fleetapp_v2.parameters.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,11 @@ public class CountryService {
 
     public List<Country> findAll(){
         return countryRepository.findAll();
+    }
+
+    public Page<Country> findPage(int pageNumber){
+        Pageable pageable = PageRequest.of(pageNumber - 1,5);
+        return countryRepository.findAll(pageable);
     }
 
     public  void save(Country country){
@@ -43,10 +51,10 @@ public class CountryService {
         return countryRepository.findAll(Sort.by(field));
     }
 
-    public List<Country> findCountryWithSorting2(String field, String direction){
+    public Page<Country> findCountryWithSorting2(String field, String direction, int pageNumber){
         Sort sort = direction.equalsIgnoreCase(Sort.Direction.ASC.name())?
-                Sort.by(field).ascending():Sort.by(field).descending();
-
-        return countryRepository.findAll(sort);
+                Sort.by(field).ascending(): Sort.by(field).descending();
+        Pageable pageable = PageRequest.of(pageNumber - 1,5, sort);
+        return countryRepository.findAll(pageable);
     }
 }

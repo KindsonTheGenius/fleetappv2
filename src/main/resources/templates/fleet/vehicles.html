@@ -75,7 +75,8 @@
                                 <a class="btn btn-danger" id="deleteButton"
                                    onclick="return confirm('Are you sure you want to delete this record?')"
                                    th:href="@{'/fleet/vehicle/delete/'+${vehicle.id}}">
-                                    <i class="icon_close_alt2"></i></a>
+                                    <i class="icon_close_alt2"></i>
+                                </a>
                             </div>
                         </td>
                     </tr>
@@ -96,7 +97,6 @@
     <script language="JavaScript">
         $('document').ready(function () {
             $('.table #photoButton').on('click', function (event) {
-                console.log('Here now');
                 event.preventDefault();
                 var href = $(this).attr('href');
                 $('#photoModal #vehiclePhoto').attr('src', href);

@@ -18,7 +18,7 @@
     </div>
     <div class="container">
         <section class="panel">
-            <div style="padding: 10px">
+            <div class="panel-heading" style="padding: 10px">
                 <form class="form-inline" role="form" th:action="@{/hr/employeeTypes}"  method="post" >
                     <div class="form-group">
                         <label class="sr-only">Id</label>
@@ -37,7 +37,8 @@
 
                 </form>
             </div>
-            <table class="table table-striped table-advance table-hover">
+            <div class="panel-body">
+                <table class="table table-striped table-advance table-hover">
                 <tbody>
                 <tr>
                     <th></th>
@@ -62,6 +63,10 @@
                 </tr>
                 </tbody>
             </table>
+            </div>
+            <div class="panel-footer" style="padding: 10px">
+                Number of Records: 15
+            </div>
         </section>
     </div>
 

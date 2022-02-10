@@ -39,14 +39,16 @@
                         <th><i class="icon_table"></i>Vehicle</th>
                         <th><i class="icon_table"></i>Date Out</th>
                         <th><i class="icon_table"></i>Date In</th>
+                        <th><i class="icon_table"></i>Time Out</th>
                         <th><i class="icon_cogs"></i> Action</th>
                     </tr>
                     <tr th:each="hire:${hires}">
                         <td><i class="fa fa-table"></i></td>
                         <td th:text="${hire.id}">Id</td>
                         <td th:text="${hire.vehicle}==${null}?${null}:${hire.vehicle.name}">Vehicle</td>
-                        <td th:text="${hire.dateOut}">Date Out</td>
-                        <td th:text="${hire.dateIn}">Date In</td>
+                        <td th:text="${#dates.format(hire.dateOut, 'dd-MM-yyyy')}">Date Out</td>
+                        <td th:text="${#dates.format(hire.dateIn, 'dd-MM-yyyy')}">Date In</td>
+                        <td th:text="${hire.timeOut}">Time Out</td>
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-primary" id="editButton"
@@ -67,7 +69,6 @@
         </div>
     </div>
     <!--Content of the page-->
-
 </div>
 
 

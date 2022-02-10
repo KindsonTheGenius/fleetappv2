@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: fleetmsv2
+  name: fleetmsv2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fleetmsv2
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fleetmsv2
+    spec:
+      containers:
+        - image: fleetapp_v2
+          name: fleetapp_v2:1.0
+          imagePullPolicy: "Never"
+          resources: {}
+status: {}
