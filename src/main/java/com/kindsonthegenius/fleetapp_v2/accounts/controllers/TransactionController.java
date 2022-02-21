@@ -75,7 +75,7 @@ public class TransactionController {
         return "redirect:/accounts/transactions";
     }
 
-    @RequestMapping(value = "/accounts/transactions/delete/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    @RequestMapping(value = "/accounts/transaction/delete/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
     public  String delete(@PathVariable Integer id){
         transactionService.delete(id);
         return "redirect:/accounts/transactions";

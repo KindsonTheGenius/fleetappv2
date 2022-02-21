@@ -1,10 +1,14 @@
 $(document).ready(function() {
+    var transaction_y = transactions.map(x => x["amount"])
+    var transaction_x = transactions.map(x => x["purpose"])
 
+    console.log(employeeCount)
 
     var doughnutData = [
         {
             value: 30,
-            color:"#F7464A"
+            color:"#F7464A",
+            label: "Kindson"
         },
         {
             value : 50,
@@ -25,21 +29,21 @@ $(document).ready(function() {
 
     ];
     var lineChartData = {
-        labels : ["","","","","","",""],
+        labels : transaction_x,
         datasets : [
             {
                 fillColor : "rgba(220,220,220,0.5)",
                 strokeColor : "rgba(220,220,220,1)",
                 pointColor : "rgba(220,220,220,1)",
                 pointStrokeColor : "#fff",
-                data : [65,59,90,81,56,55,40]
+                data : transaction_y
             },
             {
                 fillColor : "rgba(151,187,205,0.5)",
                 strokeColor : "rgba(151,187,205,1)",
                 pointColor : "rgba(151,187,205,1)",
                 pointStrokeColor : "#fff",
-                data : [28,48,40,19,96,27,100]
+                data : transaction_y
             }
         ]
 
@@ -47,7 +51,8 @@ $(document).ready(function() {
     var pieData = [
         {
             value: 30,
-            color:"#F38630"
+            color:"#F38630",
+            label: "Kindson"
         },
         {
             value : 50,
@@ -78,7 +83,8 @@ $(document).ready(function() {
     var chartData = [
         {
             value : Math.random(),
-            color: "#D97041"
+            color: "#D97041",
+            label: "Kindson"
         },
         {
             value : Math.random(),
@@ -121,12 +127,12 @@ $(document).ready(function() {
         ]
 
     };
+
     new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
     new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
     new Chart(document.getElementById("radar").getContext("2d")).Radar(radarChartData);
     new Chart(document.getElementById("polarArea").getContext("2d")).PolarArea(chartData);
     new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
     new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
-
 
 });

@@ -81,7 +81,7 @@
                                         <option th:value="${null}">-SELECT-</option>
                                         <option th:each="contact : ${contacts}"
                                                 th:value="${contact.id}"
-                                                th:text="${contact.name}">
+                                                th:text="${contact.firstname} + ' ' + ${contact.lastname}">
                                         </option>
                                     </select>
                                 </div>

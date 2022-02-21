@@ -64,4 +64,9 @@ public class EmployeeService {
 
 		}
 	}
+
+	// Get Employee count by country
+	public List<Object> getCount(){
+		return employeeRepository.getCountByCountry();
+	}
 }
