@@ -1,6 +1,7 @@
 package com.kindsonthegenius.fleetappv2.security.controllers;
 
 
+import com.kindsonthegenius.fleetappv2.exception.UserAlreadyExistException;
 import com.kindsonthegenius.fleetappv2.security.models.User;
 import com.kindsonthegenius.fleetappv2.security.services.RoleService;
 import com.kindsonthegenius.fleetappv2.security.services.UserService;
@@ -39,14 +40,10 @@ public class UserController {
 
 	//Modified method to Add a new user User
 	@PostMapping(value="users/addNew")
-	public RedirectView addNew(User user, RedirectAttributes redir) {
-		
-		userService.save(user);	
-		
+	public RedirectView addNew(User user, RedirectAttributes redir) throws UserAlreadyExistException {
+		userService.register(user);
 		RedirectView redirectView= new RedirectView("/login",true);
-		
 	    redir.addFlashAttribute("message",	"You successfully registered! You can now login");
-	        
 	    return redirectView;				
 	}
 	
