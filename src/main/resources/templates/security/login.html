@@ -40,9 +40,8 @@
 <body class="login-img3-body">
 
 <div class="container">
-
   <form class="login-form" th:action="@{/login}" method="post">
-    <div style="text-align:center; font-size:20px; color:green; font-weight:bold">
+    <div class="alert alert-success" role="alert"  th:if="${message != null}">
       <span th:utext="${message}"></span>
     </div>
     <div class="login-wrap">

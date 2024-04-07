@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/password")
 public class PasswordResetController {
 
     private static final String REDIRECT_LOGIN = "redirect:/login";
@@ -29,7 +28,7 @@ public class PasswordResetController {
     @Autowired
     private CustomerAccountService customerAccountService;
 
-    @PostMapping("/request")
+    @PostMapping("/passwordRequest")
     public String resetPassword(final ResetPasswordData forgotPasswordForm, RedirectAttributes redirAttr) {
         try {
             customerAccountService.forgottenPassword(forgotPasswordForm.getEmail());
@@ -45,7 +44,7 @@ public class PasswordResetController {
         return REDIRECT_LOGIN;
     }
 
-    @GetMapping("/change")
+    @GetMapping("/passwordChange")
     public String changePassword(@RequestParam(required = false) String token, final RedirectAttributes redirAttr, final Model model) {
         if (StringUtils.isEmpty(token)) {
             redirAttr.addFlashAttribute("tokenError",
@@ -59,7 +58,7 @@ public class PasswordResetController {
         return "security/changePassword";
     }
 
-    @PostMapping("/change")
+    @PostMapping("/passwordChange")
     public String changePassword(final ResetPasswordData data, final Model model) {
         try {
             customerAccountService.updatePassword(data.getPassword(), data.getToken());
