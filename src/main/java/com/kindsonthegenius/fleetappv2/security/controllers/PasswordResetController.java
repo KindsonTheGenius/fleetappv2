@@ -29,11 +29,6 @@ public class PasswordResetController {
     @Autowired
     private CustomerAccountService customerAccountService;
 
-    @GetMapping("/forgotPassword")
-    public String forgotPassword(){
-        return "forgotPassword";
-    }
-
     @PostMapping("/request")
     public String resetPassword(final ResetPasswordData forgotPasswordForm, RedirectAttributes redirAttr) {
         try {
