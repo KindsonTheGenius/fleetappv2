@@ -14,7 +14,6 @@ public class Role extends Auditable<String> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
-
     private String description;
     private String details;
 }
