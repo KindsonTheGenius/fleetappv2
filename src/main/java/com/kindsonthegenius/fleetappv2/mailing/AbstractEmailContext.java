@@ -58,6 +58,26 @@ public abstract class AbstractEmailContext {
         this.email = email;
     }
 
+    public Map<String, Object> getContext() {
+        return context;
+    }
+
+    public Object put(String key, Object value) {
+        return key ==null ? null : this.context.put(key.intern(),value);
+    }
+
+    public String getTemplateLocation() {
+        return templateLocation;
+    }
+
+    public void setTemplateLocation(String templateLocation) {
+        this.templateLocation = templateLocation;
+    }
+
+    public void setContext(Map<String, Object> context) {
+        this.context = context;
+    }
+
     public String getAttachment() {
         return attachment;
     }
@@ -90,23 +110,5 @@ public abstract class AbstractEmailContext {
         this.displayName = displayName;
     }
 
-    public Map<String, Object> getContext() {
-        return context;
-    }
 
-    public Object put(String key, Object value) {
-        return key ==null ? null : this.context.put(key.intern(),value);
-    }
-
-    public String getTemplateLocation() {
-        return templateLocation;
-    }
-
-    public void setTemplateLocation(String templateLocation) {
-        this.templateLocation = templateLocation;
-    }
-
-    public void setContext(Map<String, Object> context) {
-        this.context = context;
-    }
 }

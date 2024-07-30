@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.kindsonthegenius</groupId>
-    <artifactId>fleetapp_v2</artifactId>
+    <artifactId>fleetappv2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fleetapp_v2</name>
+    <name>fleetappv2</name>
     <description>Fleet App Version 2</description>
     <properties>
         <java.version>8</java.version>

@@ -4,13 +4,11 @@ import com.kindsonthegenius.fleetappv2.security.models.SecureToken;
 
 public interface SecureTokenService {
 
-    public SecureToken createSecureToken();
+    SecureToken createSecureToken();
 
+    void saveSecureToken(SecureToken secureToken);
 
-    public void saveSecureToken(SecureToken secureToken);
+    SecureToken findByToken(String token);
 
-    public SecureToken findByToken(String token);
-
-    public void removeToken(SecureToken token);
-    public void removeTokenByToken(String token);
+    void removeToken(SecureToken token);
 }

@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 public class DefaultSecureTokenService implements SecureTokenService {
 
     private static final BytesKeyGenerator DEFAULT_TOKEN_GENERATOR = KeyGenerators.secureRandom(12);
-    private static final Charset US_ASCII = StandardCharsets.US_ASCII;
 
     @Value("${ktg.secure.token.validity}")
     private int tokenValidityInSeconds;
@@ -48,8 +47,4 @@ public class DefaultSecureTokenService implements SecureTokenService {
         secureTokenRepository.delete(token);
     }
 
-    @Override
-    public void removeTokenByToken(String token) {
-        secureTokenRepository.removeByToken(token);
-    }
 }

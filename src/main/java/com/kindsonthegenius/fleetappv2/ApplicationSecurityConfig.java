@@ -42,7 +42,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 		.formLogin()
 		.loginPage("/login").permitAll()
 		.defaultSuccessUrl("/loginSuccess")
-		.failureUrl("/404.html")
+		.failureUrl("/accessDenied.html")
 		.and()
 		.logout().invalidateHttpSession(true)
 		.clearAuthentication(true)
