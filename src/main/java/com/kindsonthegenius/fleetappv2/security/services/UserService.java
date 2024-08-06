@@ -53,7 +53,6 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 
-
 	@Value("${site.base.url.https}")
 	private String baseUrl;
 

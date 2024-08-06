@@ -10,6 +10,7 @@ import com.kindsonthegenius.fleetappv2.security.repositories.SecureTokenReposito
 import com.kindsonthegenius.fleetappv2.security.repositories.UserRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ import javax.mail.MessagingException;
 import java.util.Objects;
 
 
-@Service("customerAccountService")
-public class DefaultCustomerAccountService implements CustomerAccountService {
+@Service("userAccountService")
+public class DefaultUserAccountService implements UserAccountService {
 
     @Resource
     UserService userService;
@@ -40,8 +41,7 @@ public class DefaultCustomerAccountService implements CustomerAccountService {
     private UserRepository userRepository;
 
     @Resource
-    private PasswordEncoder passwordEncoder;
-
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void forgottenPassword(String userName) throws UnkownIdentifierException {
@@ -60,10 +60,9 @@ public class DefaultCustomerAccountService implements CustomerAccountService {
             throw new UnkownIdentifierException("unable to find user for the token");
         }
         secureTokenService.removeToken(secureToken);
-        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(bCryptPasswordEncoder.encode(password));
         userRepository.save(user);
     }
-
 
     protected void sendResetPasswordEmail(User user) {
         SecureToken secureToken= secureTokenService.createSecureToken();
@@ -80,9 +79,5 @@ public class DefaultCustomerAccountService implements CustomerAccountService {
         }
     }
 
-    @Override
-    public boolean loginDisabled(String username) {
-        User user = userRepository.findByEmail(username);
-        return user!=null ? user.isLoginDisabled() : false;
-    }
+
 }

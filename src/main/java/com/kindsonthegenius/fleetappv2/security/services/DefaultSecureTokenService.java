@@ -29,7 +29,7 @@ public class DefaultSecureTokenService implements SecureTokenService {
         String tokenValue = new String(Base64.encodeBase64URLSafe(DEFAULT_TOKEN_GENERATOR.generateKey()));
         SecureToken secureToken = new SecureToken();
         secureToken.setToken(tokenValue);
-        secureToken.setExpireAt(LocalDateTime.now().plusSeconds(tokenValidityInSeconds));
+        secureToken.setExpiredAt(LocalDateTime.now().plusSeconds(tokenValidityInSeconds));
         this.saveSecureToken(secureToken);
         return secureToken;
     }

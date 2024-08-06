@@ -16,20 +16,13 @@ public class SecureToken {
     @Column(unique = true)
     private String token;
 
-    @CreationTimestamp
-    @Column(updatable = false)
-    private Timestamp timestamp;
-
     @Column(updatable = false)
     @Basic(optional = false)
-    private LocalDateTime expireAt;
+    private LocalDateTime expiredAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
-
-    @Transient
-    private boolean isExpired;
 
     public String getToken() {
         return token;
@@ -43,21 +36,16 @@ public class SecureToken {
         return id;
     }
 
-    public LocalDateTime getExpireAt() {
-        return expireAt;
+    public LocalDateTime getExpiredAt() {
+        return expiredAt;
     }
 
-    public void setExpireAt(LocalDateTime expireAt) {
-        this.expireAt = expireAt;
-    }
-
-    public Timestamp getTimeStamp() {
-        return timestamp;
+    public void setExpiredAt(LocalDateTime expireAt) {
+        this.expiredAt = expireAt;
     }
 
     public boolean isExpired() {
-
-        return getExpireAt().isBefore(LocalDateTime.now()); // this is generic implementation, you can always make it timezone specific
+        return getExpiredAt().isBefore(LocalDateTime.now()); // this is generic implementation, you can always make it timezone specific
     }
 
     public User getUser() {
@@ -67,5 +55,4 @@ public class SecureToken {
     public void setUser(User user) {
         this.user = user;
     }
-
 }

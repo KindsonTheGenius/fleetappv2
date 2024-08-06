@@ -10,10 +10,6 @@ public abstract class AbstractEmailContext {
     private String to;
     private String subject;
     private String email;
-    private String attachment;
-    private String fromDisplayName;
-    private String emailLanguage;
-    private String displayName;
     private String templateLocation;
     private Map<String, Object> context;
 
@@ -63,6 +59,7 @@ public abstract class AbstractEmailContext {
     }
 
     public Object put(String key, Object value) {
+
         return key ==null ? null : this.context.put(key.intern(),value);
     }
 
@@ -77,38 +74,5 @@ public abstract class AbstractEmailContext {
     public void setContext(Map<String, Object> context) {
         this.context = context;
     }
-
-    public String getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(String attachment) {
-        this.attachment = attachment;
-    }
-
-    public String getFromDisplayName() {
-        return fromDisplayName;
-    }
-
-    public void setFromDisplayName(String fromDisplayName) {
-        this.fromDisplayName = fromDisplayName;
-    }
-
-    public String getEmailLanguage() {
-        return emailLanguage;
-    }
-
-    public void setEmailLanguage(String emailLanguage) {
-        this.emailLanguage = emailLanguage;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
 
 }

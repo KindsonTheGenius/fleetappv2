@@ -7,7 +7,6 @@ public class ForgotPasswordEmailContext extends AbstractEmailContext {
 
     private String token;
 
-
     @Override
     public <T> void init(T context){
         //we can do any common configuration setup here
