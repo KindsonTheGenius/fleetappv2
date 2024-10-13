@@ -134,7 +134,7 @@
             $('#ddlCountryAdd').on('change',function () {
                 $('#ddlStateAdd').empty().append('<option value="null">-SELECT-</option>');
                 var countryid = $(this).val();
-                var href = "http://localhost:8080/parameters/country/" + countryid
+                var href = "http://localhost:8082/parameters/country/" + countryid
                 $.get(href, function (country, status) {
                     var states = country.states;
                     for (var i = 0; i <= states.length-1; i++) {
